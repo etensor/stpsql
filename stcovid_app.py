@@ -1,7 +1,7 @@
 import psycopg2
 import streamlit as st
 import pandas as pd
-from os import environ
+import os
 
 st.set_page_config(page_title='CovidApp 9', page_icon='🦠')
 
@@ -13,7 +13,8 @@ st.set_page_config(page_title='CovidApp 9', page_icon='🦠')
 #@st.experimental_singleton
 def init_connection():
     #return psycopg2.connect(**st.secrets["postgres"])
-    return psycopg2.connect(environ.get('DATABASE_URL'))
+    #return psycopg2.connect(os.environ.get('DATABASE_URL'))
+    return psycopg2.connect(**st.secrets["DATABASE_URL"])
 
 
 def exec_query(query, mod = True):
