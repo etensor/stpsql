@@ -1,13 +1,19 @@
 import psycopg2
 import streamlit as st
 import pandas as pd
+from os import environ
 
 st.set_page_config(page_title='CovidApp 9', page_icon='🦠')
 
 
+# Esta App ya no se conecta con postgres local sino con un BD hosteada
+# por heroku en aws que por seguridad tiene las credenciales protegidas.
+
+
 #@st.experimental_singleton
 def init_connection():
-    return psycopg2.connect(**st.secrets["postgres"])
+    #return psycopg2.connect(**st.secrets["postgres"])
+    return psycopg2.connect(environ.get('DATABASE_URL'))
 
 
 def exec_query(query, mod = True):
