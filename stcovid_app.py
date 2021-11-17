@@ -12,11 +12,11 @@ st.set_page_config(page_title='CovidApp 9', page_icon='🦠')
 #@st.experimental_singleton
 def init_connection():
     #return psycopg2.connect(**st.secrets["postgres"])
-    if os.environ.get('db_dbname') != None:
-        rhost = os.environ.get('db_host')
-        rdbname = os.environ.get('db_dbname')
-        rpass = os.environ.get('db_password')
-        ruser = os.environ.get('db_user')
+    if os.environ.get('DBNAME'):
+        rhost = os.environ.get('RHOST')
+        rdbname = os.environ.get('DBNAME')
+        rpass = os.environ.get('RPASS')
+        ruser = os.environ.get('RUSER')
 
         try:
             return psycopg2.connect(
