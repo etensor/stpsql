@@ -1,1 +1,1 @@
-web: streamlit run stcovid_app.py
+streamlit run stcovid_app.py
