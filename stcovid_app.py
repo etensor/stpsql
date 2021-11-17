@@ -18,13 +18,17 @@ def init_connection():
         rpass = os.environ.get('db_password')
         ruser = os.environ.get('db_user')
 
-        return psycopg2.connect(
-            dbname=rdbname,
-            user=ruser,
-            password=rpass,
-            host=rhost,
-            port=5432
-        )
+        try:
+            return psycopg2.connect(
+                dbname=rdbname,
+                user=ruser,
+                password=rpass,
+                host=rhost,
+                port=5432
+            )
+        except:
+            st.error('No se pudo.')
+            pass
 
 
     return psycopg2.connect(**st.secrets["db_credentials"])
