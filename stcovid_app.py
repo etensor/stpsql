@@ -5,7 +5,6 @@ import os
 
 st.set_page_config(page_title='CovidApp 9', page_icon='🦠')
 
-
 # Esta App ya no se conecta con postgres local sino con un BD hosteada
 # por heroku en aws que por seguridad tiene las credenciales protegidas.
 
@@ -13,8 +12,21 @@ st.set_page_config(page_title='CovidApp 9', page_icon='🦠')
 #@st.experimental_singleton
 def init_connection():
     #return psycopg2.connect(**st.secrets["postgres"])
-    if os.environ.get('DATABASE_URL'):
-        return psycopg2.connect(os.environ.get('DATABASE_URL'))
+    if os.environ.get('db_dbname') != None:
+        rhost = os.environ.get('db_host')
+        rdbname = os.environ.get('db_dbname')
+        rpass = os.environ.get('db_password')
+        ruser = os.environ.get('db_user')
+
+        return psycopg2.connect(
+            dbname=rdbname,
+            user=ruser,
+            password=rpass,
+            host=rhost,
+            port=5432
+        )
+
+
     return psycopg2.connect(**st.secrets["db_credentials"])
 
 
