@@ -137,6 +137,7 @@ def exec_query(query, mod=True):
     st.markdown('Jean Pierre Vargas - 69549')
 
 
+
 sanos , control = st.columns(2)
 tabla_est_sanos = exec_query('select * from estudiantes_sanos')
 tabla_est_ctrl = exec_query('select * from estudiantes_control')
@@ -144,14 +145,14 @@ tabla_est_ctrl = exec_query('select * from estudiantes_control')
 with sanos:
     with st.expander('Estudiantes Sanos: ', True):
         query_df = pd.DataFrame(tabla_est_sanos, 
-        columns={'codigo', 'nombre', 'temperatura'})
+        columns={'codigo', 'nombre', 'temp.'})
 
         st.dataframe(query_df)
     
 with control:
     with st.expander('Estudiantes - Control: ', True):
         query_df = pd.DataFrame(tabla_est_ctrl, 
-        columns={'codigo', 'nombre', 'temperatura'})
+        columns={'codigo', 'nombre', 'temp.'})
 
         st.dataframe(query_df)
 
