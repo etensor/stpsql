@@ -143,12 +143,16 @@ tabla_est_ctrl = exec_query('select * from estudiantes_control')
 
 with sanos:
     with st.expander('Estudiantes Sanos: ', True):
-        query_df = pd.DataFrame(tabla_est_sanos)
+        query_df = pd.DataFrame(tabla_est_sanos, 
+        index =['codigo','nombre','temperatura'])
+        
         st.dataframe(query_df)
     
 with control:
     with st.expander('Estudiantes - Control: ', True):
-        query_df = pd.DataFrame(tabla_est_ctrl)
+        query_df = pd.DataFrame(tabla_est_ctrl, 
+        index=['codigo', 'nombre', 'temperatura'])
+
         st.dataframe(query_df)
 
 
