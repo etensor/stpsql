@@ -24,3 +24,4 @@ streamlit run stcovid_app.py
 
 ```
 
+**  El boton ``Generar backup`` solo sirve localmente...**
