@@ -2,17 +2,19 @@
 
 ### App Taller BD
 
-Para que correr app localmente:
-crear carpeta './.streamlit'
-adentro un archivo secrets.toml
-con la configuracion local de postgres asi:
+Para correr la app localmente:
 
-    [db_credentials]
-    host = 
-    port = 
-    dbname =
-    user = 
-    password =
+    crear carpeta './.streamlit'
+    adentro un archivo secrets.toml
+    con la configuracion local de postgres asi:
+
+        [db_credentials]
+        host = 
+        port = 
+        dbname =
+        user = 
+        password =
+
 
 #### Para la configuración de psycopg2 por medio de st.secrets
 
@@ -24,4 +26,4 @@ streamlit run stcovid_app.py
 
 ```
 
-**  El boton ``Generar backup`` solo sirve localmente...**
+**  El boton ``Generar backup`` solo sirve localmente... **
