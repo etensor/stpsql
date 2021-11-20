@@ -4,6 +4,10 @@ import pandas as pd
 import subprocess
 import os
 
+## David Penilla - 69675
+## Santiago Abadia - 70770
+## Jean Pierre Vargas - 69549
+
 st.set_page_config(page_title='CovidApp | Bases de Datos', page_icon='U+2211')
 
 # Esta App ya no se conecta con postgres local sino con una BD hosteada
@@ -131,6 +135,40 @@ def exec_query(query, mod=True):
  ''',"python")
     
     st.markdown('Si la query no retorna nada ``fetchall()`` falla.')
+    
+    st.subheader('**Trigger - postgres**')
+    st.markdown('''
+    Localmente, la base de datos necesita siguiente
+    el trigger,implementado: ''')
+    st.code(r'''-- Trigger -> Temperatura
+
+        create or replace function verificar_estudiante()
+    returns  trigger 
+    language PLPGSQL as 
+    $$
+    declare
+        ntemp double precision;
+        nplan character varying;
+    BEGIN
+        ntemp := new.temperatura;
+        if (ntemp > 37.8) then
+            nplan := 'precaucion';		
+        ELSE nplan := 'normal';
+        end if;
+        
+        new.plan := nplan;
+        return new;
+    END;
+    $$
+
+    --
+
+    create trigger trigverif
+    before insert or update on students
+    for each row execute procedure verificar_estudiante();
+         
+     ''','sql')
+    
     st.markdown('**Autores:**')
     st.markdown('David Penilla - 69675')
     st.markdown('Santiago Abadia - 70770')

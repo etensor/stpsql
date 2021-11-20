@@ -17,11 +17,11 @@ con la configuracion local de postgres asi:
 #### Para la configuración de psycopg2 por medio de st.secrets
 
 Luego:
+
 ```bash
 pip install -r requirements.txt
 
 streamlit run stcovid_app.py
-
 ```
 
 **  El boton ``Generar backup`` solo sirve localmente...**
