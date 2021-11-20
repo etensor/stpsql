@@ -142,6 +142,13 @@ def exec_query(query, mod=True):
     el trigger,implementado: ''')
     st.code(r'''-- Trigger -> Temperatura
 
+        -- el trigger deberia ser con max(temperatura)
+        -- pero si temprano max marca 41°; 40°,39°,38° 
+        -- pasarian por una temperatura normal,
+        -- lo cual determinaría con más certeza menos casos
+        -- pero ignoraría a la mayoria.
+
+    -- ---------------------------------------------------- 
         create or replace function verificar_estudiante()
     returns  trigger 
     language PLPGSQL as 
@@ -151,6 +158,10 @@ def exec_query(query, mod=True):
         nplan character varying;
     BEGIN
         ntemp := new.temperatura;
+        
+        -- requerido: 
+        -- if (ntemp > (select max(temperatura) from students;) then
+
         if (ntemp > 38) then
             nplan := 'precaucion';		
         ELSE nplan := 'normal';
