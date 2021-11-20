@@ -151,7 +151,7 @@ def exec_query(query, mod=True):
         nplan character varying;
     BEGIN
         ntemp := new.temperatura;
-        if (ntemp > 37.8) then
+        if (ntemp > 38) then
             nplan := 'precaucion';		
         ELSE nplan := 'normal';
         end if;
