@@ -179,8 +179,8 @@ def exec_query(query, mod=True):
     for each row execute procedure verificar_estudiante();
          
      ''','sql')
-    
-    st.markdown('**Autores:**')
+
+    st.subheader('Autores: ')
     st.markdown('David Penilla - 69675')
     st.markdown('Santiago Abadia - 70770')
     st.markdown('Jean Pierre Vargas - 69549')
